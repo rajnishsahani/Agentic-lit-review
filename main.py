@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv, find_dotenv
 from controller.orchestrator import run_literature_review
+from evaluation.metrics import generate_report, print_report
 
 load_dotenv(find_dotenv())
 
@@ -20,6 +21,7 @@ def print_results(state):
         print(f"   Year: {paper['year']}")
         print(f"   Relevance: {paper['relevance_score']:.2f}")
         print(f"   Summary: {paper['summary']}")
+        print(f"   URL: {paper['url']}")
     
     print("\n--- THEMES IDENTIFIED ---")
     for theme in state['themes']:
@@ -43,3 +45,7 @@ if __name__ == "__main__":
     
     result = run_literature_review(topic, max_iterations=2)
     print_results(result)
+    
+    # Generate and print evaluation report
+    report = generate_report(result)
+    print_report(report)
