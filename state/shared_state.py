@@ -28,6 +28,7 @@ class AgentState(TypedDict):
     # Planning Agent outputs
     research_gaps: List[str]
     research_plan: str
+    reading_order: List[dict]
     
     # Controller
     iteration: int
